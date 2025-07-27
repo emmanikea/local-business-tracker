@@ -24,7 +24,7 @@ export interface RankingComparison {
 export class RankingHistoryManager {
   private storageKey = 'business-ranking-history'
 
-  saveRankingData(keyword: string, location: string, businesses: any[]): void {
+  saveRankingData(keyword: string, location: string, businesses: Array<{id: string, name: string, rank: number, rating: number, totalRatings: number}>): void {
     const record: RankingRecord = {
       id: `${keyword}-${location}-${Date.now()}`,
       keyword: keyword.toLowerCase().trim(),

@@ -3,8 +3,14 @@
 import { useState } from 'react'
 import { RankingHistoryManager } from '../utils/rankingHistory'
 
+interface Business {
+  id: string
+  name: string
+  rank: number
+}
+
 interface SearchFormProps {
-  onSearch: (results: any[], comparisons?: any[], location?: string) => void
+  onSearch: (results: Business[], comparisons?: unknown[], location?: string) => void
   setLoading: (loading: boolean) => void
 }
 

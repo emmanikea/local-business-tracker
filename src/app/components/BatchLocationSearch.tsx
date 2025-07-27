@@ -2,9 +2,16 @@
 
 import { useState } from 'react'
 
+interface Business {
+  id: string
+  name: string
+  rating: number
+  isOpen?: boolean
+}
+
 interface BatchSearchResult {
   location: string
-  businesses: any[]
+  businesses: Business[]
   loading: boolean
   error?: string
 }
@@ -97,7 +104,7 @@ export default function BatchLocationSearch({ onResultsUpdate }: BatchLocationSe
         // Small delay to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 500))
         
-      } catch (error) {
+      } catch {
         finalResults.push({
           location,
           businesses: [],
@@ -115,11 +122,11 @@ export default function BatchLocationSearch({ onResultsUpdate }: BatchLocationSe
     onResultsUpdate([])
   }
 
-  const getTopBusiness = (businesses: any[]) => {
+  const getTopBusiness = (businesses: Business[]) => {
     return businesses.length > 0 ? businesses[0] : null
   }
 
-  const getAverageRating = (businesses: any[]) => {
+  const getAverageRating = (businesses: Business[]) => {
     if (businesses.length === 0) return 0
     const sum = businesses.reduce((acc, b) => acc + (b.rating || 0), 0)
     return (sum / businesses.length).toFixed(1)

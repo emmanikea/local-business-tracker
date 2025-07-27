@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const businesses = data.results.map((place: any, index: number) => ({
+    const businesses = data.results.map((place: Record<string, unknown>, index: number) => ({
       id: place.place_id,
       name: place.name,
       address: place.formatted_address,

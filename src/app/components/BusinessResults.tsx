@@ -78,7 +78,7 @@ export default function BusinessResults({ results, loading, comparisons = [], lo
         Search Results ({results.length} businesses found)
       </h2>
       
-      {results.map((business, index) => {
+      {results.map((business) => {
         const rankingChange = getRankingChange(business.id)
         return (
           <div 
@@ -170,7 +170,7 @@ export default function BusinessResults({ results, loading, comparisons = [], lo
             <>
               <br /><br />
               <strong>Ranking Changes:</strong> Green arrows (↑) indicate improved rankings, red arrows (↓) indicate drops, 
-              and "New" indicates businesses that weren't in previous searches.
+              and &quot;New&quot; indicates businesses that weren&apos;t in previous searches.
             </>
           )}
         </p>

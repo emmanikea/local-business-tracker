@@ -126,8 +126,8 @@ export async function analyzeBusinessKeywords(
       
       if (response.ok && data.businesses) {
         const businessRank = data.businesses.findIndex(
-          (b: any) => b.name.toLowerCase().includes(businessName.toLowerCase()) ||
-                     businessName.toLowerCase().includes(b.name.toLowerCase())
+          (b: Record<string, unknown>) => String(b.name).toLowerCase().includes(businessName.toLowerCase()) ||
+                     businessName.toLowerCase().includes(String(b.name).toLowerCase())
         )
         
         results.push({

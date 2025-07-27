@@ -99,7 +99,7 @@ export default function Home() {
             {batchResults.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Detailed Results by Location</h2>
-                {batchResults.map((result, index) => (
+                {batchResults.map((result) => (
                   <div key={result.location} className="mb-8">
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">
                       {result.location} ({result.businesses.length} results)

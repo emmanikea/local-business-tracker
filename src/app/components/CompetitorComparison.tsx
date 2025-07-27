@@ -77,7 +77,7 @@ export default function CompetitorComparison({ businesses, location }: Competito
         selectedBusinesses.forEach(businessId => {
           const business = businesses.find(b => b.id === businessId)
           if (business) {
-            const rank = data.businesses?.findIndex((b: any) => 
+            const rank = data.businesses?.findIndex((b: Record<string, unknown>) => 
               b.name.toLowerCase().includes(business.name.toLowerCase()) ||
               business.name.toLowerCase().includes(b.name.toLowerCase())
             )

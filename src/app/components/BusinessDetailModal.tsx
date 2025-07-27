@@ -3,22 +3,28 @@
 import { useState, useEffect } from 'react'
 import { analyzeBusinessKeywords } from '../utils/relatedKeywords'
 
+interface Business {
+  id: string
+  name: string
+  address: string
+  rating: number
+  totalRatings: number
+  rank: number
+  types: string[]
+  priceLevel?: number
+  isOpen?: boolean
+}
+
 interface BusinessDetailModalProps {
-  business: any
+  business: Business
   location: string
   isOpen: boolean
   onClose: () => void
 }
 
 export default function BusinessDetailModal({ business, location, isOpen, onClose }: BusinessDetailModalProps) {
-  const [keywordAnalysis, setKeywordAnalysis] = useState<any[]>([])
+  const [keywordAnalysis, setKeywordAnalysis] = useState<Array<{keyword: string, rank: number | null, found: boolean}>>([])
   const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    if (isOpen && business) {
-      analyzeKeywords()
-    }
-  }, [isOpen, business])
 
   const analyzeKeywords = async () => {
     setLoading(true)
@@ -31,6 +37,12 @@ export default function BusinessDetailModal({ business, location, isOpen, onClos
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (isOpen && business) {
+      analyzeKeywords()
+    }
+  }, [isOpen, business])
 
   if (!isOpen) return null
 
@@ -128,7 +140,7 @@ export default function BusinessDetailModal({ business, location, isOpen, onClos
                     ))
                   ) : (
                     <p className="text-gray-500 text-center py-4">
-                      Click "Analyze Keywords" to see where this business ranks for related terms
+                      Click &quot;Analyze Keywords&quot; to see where this business ranks for related terms
                     </p>
                   )}
                 </div>
