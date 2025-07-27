@@ -206,7 +206,7 @@ export default function BatchLocationSearch({ onResultsUpdate }: BatchLocationSe
           {/* Results Header */}
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold">
-              Results for "{keyword}" across {locations.length} location{locations.length !== 1 ? 's' : ''}
+              Results for &quot;{keyword}&quot; across {locations.length} location{locations.length !== 1 ? 's' : ''}
             </h3>
             <button
               onClick={clearResults}

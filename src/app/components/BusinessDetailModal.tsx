@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { analyzeBusinessKeywords } from '../utils/relatedKeywords'
 
 interface Business {
@@ -26,7 +26,7 @@ export default function BusinessDetailModal({ business, location, isOpen, onClos
   const [keywordAnalysis, setKeywordAnalysis] = useState<Array<{keyword: string, rank: number | null, found: boolean}>>([])
   const [loading, setLoading] = useState(false)
 
-  const analyzeKeywords = async () => {
+  const analyzeKeywords = useCallback(async () => {
     setLoading(true)
     try {
       const results = await analyzeBusinessKeywords(business.name, business.types, location)
@@ -36,13 +36,13 @@ export default function BusinessDetailModal({ business, location, isOpen, onClos
     } finally {
       setLoading(false)
     }
-  }
+  }, [business.name, business.types, location])
 
   useEffect(() => {
     if (isOpen && business) {
       analyzeKeywords()
     }
-  }, [isOpen, business])
+  }, [isOpen, business, analyzeKeywords])
 
   if (!isOpen) return null
 
